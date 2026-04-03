@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuroBakery · Full Menu</title>
+    
+    <!-- Original CSS Link restored -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Embedded CSS for single-file preview with Light Pink Theme -->
+    <style>
+      :root {
+        --bg-color: #fdf0f3; /* Light pink background */
+        --text-color: #332822;
+        --accent-color: #c48a58;
+        --white: #ffffff;
+        --gray-light: #e8dadd; /* Slightly tinted gray for the pink theme */
+        --gray-text: #7a6e67;
+        --font-heading: 'Playfair Display', serif;
+        --font-body: 'Poppins', sans-serif;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      
+      body {
+        font-family: var(--font-body);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      a { text-decoration: none; color: inherit; }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      .site-header {
+        background-color: var(--white);
+        padding: 20px 0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-heading);
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .logo-mark {
+        background: var(--accent-color);
+        color: var(--white);
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 18px;
+      }
+      .logo-text span { color: var(--accent-color); }
+      .nav { display: flex; gap: 20px; align-items: center; }
+      .nav-link { font-weight: 500; transition: color 0.3s; }
+      .nav-link:hover, .nav-link.active { color: var(--accent-color); }
+      .nav-cta {
+        background: var(--text-color);
+        color: var(--white);
+        padding: 8px 16px;
+        border-radius: 20px;
+      }
+      .nav-cta:hover { background: var(--accent-color); color: var(--white); }
+
+      /* Menu Page Styles */
+      .menu-page { padding: 60px 0; }
+      .section-header-inline {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 12px;
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+      h1, h2 { font-family: var(--font-heading); }
+      h1 { font-size: 48px; margin: 10px 0; }
+      h2 { font-size: 32px; margin-bottom: 10px; }
+      
+      .menu-legend {
+        display: flex;
+        gap: 10px;
+      }
+      .legend-pill, .badge {
+        background: var(--gray-light);
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .badge { padding: 2px 6px; margin-left: 5px; }
+
+      .menu-tabs {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 50px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+      .menu-tab {
+        background: var(--white);
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: 500;
+        white-space: nowrap;
+        border: 1px solid var(--gray-light);
+        transition: all 0.3s;
+      }
+      .menu-tab:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+
+      .menu-section { margin-bottom: 60px; scroll-margin-top: 100px; }
+      .menu-section-header { margin-bottom: 30px; }
+      .menu-section-header p { color: var(--gray-text); }
+
+      .grid.cards-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+      }
+
+      /* Card Styles */
+      .card {
+        background: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      .card:hover { transform: translateY(-5px); }
+      .card-image { width: 100%; height: 240px; overflow: hidden; background-color: var(--gray-light); }
+      .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .card:hover .card-image img { transform: scale(1.05); }
+      
+      .card h3 {
+        font-family: var(--font-body);
+        font-size: 18px;
+        font-weight: 600;
+        margin: 20px 20px 10px;
+      }
+      .menu-desc {
+        color: var(--gray-text);
+        font-size: 14px;
+        margin: 0 20px 20px;
+        flex-grow: 1;
+      }
+      .menu-meta {
+        font-size: 13px;
+        color: var(--gray-text);
+        margin: 0 20px 5px;
+      }
+      .menu-price {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--accent-color);
+        margin: 0 20px 20px;
+      }
+
+      /* Note Section */
+      .menu-note {
+        background: var(--white);
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+        border: 2px dashed #d1c1c4;
+      }
+      .menu-note h3 { font-family: var(--font-heading); font-size: 28px; margin-bottom: 15px; }
+      .menu-note ul { list-style: none; margin: 20px 0; color: var(--gray-text); }
+      .menu-note li { margin-bottom: 8px; }
+      .menu-note a { color: var(--accent-color); text-decoration: underline; }
+
+      /* Footer */
+      .site-footer {
+        background: var(--text-color);
+        color: var(--white);
+        padding: 60px 0 30px;
+      }
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: space-between;
+      }
+      .footer-links {
+        display: flex;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+      .footer-links h4 {
+        font-family: var(--font-heading);
+        margin-bottom: 15px;
+        color: var(--accent-color);
+      }
+      .footer-links p, .footer-links a {
+        display: block;
+        color: #b0a8a4;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+      .footer-meta {
+        width: 100%;
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        color: #b0a8a4;
+        font-size: 14px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav { display: none; }
+        h1 { font-size: 36px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">AB</span>
+          <span class="logo-text">
+            Auro<span>Bakery</span>
+          </span>
+        </a>
+        <nav class="nav">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="menu.html" class="nav-link active">Menu</a>
+          <a href="about.html" class="nav-link">Our Story</a>
+          <a href="contact.html" class="nav-link nav-cta">Visit Us</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="menu-page">
+      <section class="section">
+        <div class="container">
+          <div class="section-header section-header-inline">
+            <div>
+              <p class="eyebrow">Full bakery collection</p>
+              <h1>Our Menu</h1>
+              <p>
+                Prices are inclusive of all taxes. All items are available in-store;<br/>
+                customisations and large orders can be placed 24 hours in advance.
+              </p>
+            </div>
+            <div class="menu-legend">
+              <span class="legend-pill">V · Vegan</span>
+              <span class="legend-pill">E · Eggless</span>
+              <span class="legend-pill">N · Contains Nuts</span>
+            </div>
+          </div>
+          
+          <div class="menu-tabs">
+            <a href="#cakes" class="menu-tab">Cakes</a>
+            <a href="#pastries" class="menu-tab">Pastries</a>
+            <a href="#breads" class="menu-tab">Breads</a>
+            <a href="#cookies" class="menu-tab">Cookies & Bars</a>
+            <a href="#beverages" class="menu-tab">Beverages</a>
+          </div>
+
+          <!-- Cakes -->
+          <section class="menu-section" id="cakes">
+            <div class="menu-section-header">
+              <h2>Cakes</h2>
+              <p>Perfect for celebrations, gatherings, or quiet evenings in.</p>
+            </div>
+            <div class="grid cards-3">
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=800&q=80"
+                    alt="Classic vanilla bean cake with cream frosting"
+                  />
+                </div>
+                <h3>Classic Vanilla Bean Cake <span class="badge">E</span></h3>
+                <p class="menu-desc">Madagascan vanilla sponge with whipped cream frosting.</p>
+                <p class="menu-meta">500 g / 1 kg</p>
+                <p class="menu-price">₹799 / ₹1,399</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"
+                    alt="Rich dark chocolate truffle cake"
+                  />
+                </div>
+                <h3>72% Dark Chocolate Truffle <span class="badge">E</span></h3>
+                <p class="menu-desc">Rich chocolate sponge layered with dark chocolate ganache.</p>
+                <p class="menu-meta">500 g / 1 kg</p>
+                <p class="menu-price">₹899 / ₹1,599</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <!-- REPLACED IMAGE -->
+                  <img
+                    src="https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?auto=format&fit=crop&w=800&q=80"
+                    alt="Red velvet cream cheese cake slice"
+                  />
+                </div>
+                <h3>Red Velvet Cream Cheese Cake</h3>
+                <p class="menu-desc">Moist red velvet layers with a tangy cream cheese frosting.</p>
+                <p class="menu-meta">500 g / 1 kg</p>
+                <p class="menu-price">₹949 / ₹1,699</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=800&q=80"
+                    alt="Rasmalai tres leches cake on a plate"
+                  />
+                </div>
+                <h3>Rasmalai Tres Leches <span class="badge">E</span></h3>
+                <p class="menu-desc">Saffron-infused milk soak with pistachio crumble.</p>
+                <p class="menu-meta">500 g / 1 kg</p>
+                <p class="menu-price">₹999 / ₹1,799</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=800&q=80"
+                    alt="Roasted hazelnut praline cake with nuts"
+                  />
+                </div>
+                <h3>Roasted Hazelnut Praline Cake <span class="badge">N</span></h3>
+                <p class="menu-desc">Dark chocolate sponge with hazelnut praline crunch.</p>
+                <p class="menu-meta">500 g / 1 kg</p>
+                <p class="menu-price">₹1,049 / ₹1,899</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80"
+                    alt="Fresh fruit gateaux with berries"
+                  />
+                </div>
+                <h3>Fresh Fruit Gateaux <span class="badge">E</span></h3>
+                <p class="menu-desc">Light vanilla sponge layered with seasonal fruits and cream.</p>
+                <p class="menu-meta">500 g / 1 kg</p>
+                <p class="menu-price">₹849 / ₹1,499</p>
+              </article>
+            </div>
+          </section>
+
+          <!-- Pastries & Viennoiserie -->
+          <section class="menu-section" id="pastries">
+            <div class="menu-section-header">
+              <h2>Pastries & Viennoiserie</h2>
+              <p>Flaky, buttery, layered bakes made fresh each morning.</p>
+            </div>
+            <div class="grid cards-3">
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80"
+                    alt="Classic butter croissant"
+                  />
+                </div>
+                <h3>Butter Croissant</h3>
+                <p class="menu-desc">Classic French-style croissant with a shattering crust.</p>
+                <p class="menu-meta">Single</p>
+                <p class="menu-price">₹149</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&w=800&q=80"
+                    alt="Almond croissant topped with toasted almonds"
+                  />
+                </div>
+                <h3>Almond Croissant <span class="badge">N</span></h3>
+                <p class="menu-desc">Filled with almond frangipane and topped with toasted nuts.</p>
+                <p class="menu-meta">Single</p>
+                <p class="menu-price">₹189</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=800&q=80"
+                    alt="Chocolate croissant with melted chocolate"
+                  />
+                </div>
+                <h3>Chocolate Croissant</h3>
+                <p class="menu-desc">Layered croissant with a bar of dark couverture chocolate.</p>
+                <p class="menu-meta">Single</p>
+                <p class="menu-price">₹179</p>
+              </article>
+            
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <!-- REPLACED IMAGE -->
+                  <img
+                    src="https://images.unsplash.com/photo-1574085733277-851d9d856a3a?auto=format&fit=crop&w=800&q=80"
+                    alt="Opera cake slice with coffee and chocolate layers"
+                  />
+                </div>
+                <h3>Opera Slice</h3>
+                <p class="menu-desc">Coffee-soaked almond sponge with chocolate ganache layers.</p>
+                <p class="menu-meta">Per slice</p>
+                <p class="menu-price">₹249</p>
+              </article>
+            </div>
+          </section>
+
+          <!-- Breads -->
+          <section class="menu-section" id="breads">
+            <div class="menu-section-header">
+              <h2>Artisan Breads</h2>
+              <p>Slow-fermented loaves for everyday meals and special tables.</p>
+            </div>
+            <div class="grid cards-3">
+              <article class="card menu-item">
+                <div class="card-image">
+                  <!-- REPLACED IMAGE -->
+                  <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=800&q=80" alt="Sourdough loaf" />
+                </div>
+                <h3>Sourdough Country Loaf <span class="badge">V</span></h3>
+                <p class="menu-desc">Naturally leavened loaf with a caramelised crust.</p>
+                <p class="menu-meta">650 g</p>
+                <p class="menu-price">₹249</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1486887396153-fa416526c108?auto=format&fit=crop&w=800&q=80" alt="Multigrain sandwich bread" />
+                </div>
+                <h3>Multigrain Sandwich Bread <span class="badge">V</span></h3>
+                <p class="menu-desc">Soft loaf with seeds and grains, perfect for toast & sandwiches.</p>
+                <p class="menu-meta">400 g</p>
+                <p class="menu-price">₹159</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?auto=format&fit=crop&w=800&q=80" alt="Brioche loaf" />
+                </div>
+                <h3>Brioche Loaf</h3>
+                <p class="menu-desc">Rich buttery loaf ideal for French toast and sliders.</p>
+                <p class="menu-meta">400 g</p>
+                <p class="menu-price">₹189</p>
+              </article>
+              
+             
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <!-- REPLACED IMAGE -->
+                  <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="Cheddar Jalapeño Loaf" />
+                </div>
+                <h3>Cheddar Jalapeño Loaf</h3>
+                <p class="menu-desc">Savoury pull-apart loaf with cheddar pockets and jalapeños.</p>
+                <p class="menu-meta">400 g</p>
+                <p class="menu-price">₹219</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <!-- REPLACED IMAGE -->
+                  <img src="https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?auto=format&fit=crop&w=800&q=80" alt="Whole Wheat Pav Rolls" />
+                </div>
+                <h3>Whole Wheat Pav Rolls <span class="badge">V</span></h3>
+                <p class="menu-desc">Soft pav buns made with stone-ground whole wheat flour.</p>
+                <p class="menu-meta">Pack of 6</p>
+                <p class="menu-price">₹129</p>
+              </article>
+            </div>
+          </section>
+
+          <!-- Cookies & Bars -->
+          <section class="menu-section" id="cookies">
+            <div class="menu-section-header">
+              <h2>Cookies & Bars</h2>
+              <p>Perfect for gifting or late-night snacking.</p>
+            </div>
+            <div class="grid cards-3">
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80" alt="Sea Salt Chocolate Chunk Cookie" />
+                </div>
+                <h3>Sea Salt Chocolate Chunk Cookie</h3>
+                <p class="menu-desc">Chewy cookie with 54% dark chunks and Maldon sea salt.</p>
+                <p class="menu-meta">Single / Box of 6</p>
+                <p class="menu-price">₹149 / ₹799</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <!-- REPLACED IMAGE -->
+                  <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80" alt="Brown Butter Nutella Cookie" />
+                </div>
+                <h3>Brown Butter Nutella Cookie</h3>
+                <p class="menu-desc">Brown butter cookie with a molten Nutella centre.</p>
+                <p class="menu-meta">Single / Box of 6</p>
+                <p class="menu-price">₹169 / ₹899</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80" alt="Pistachio Rose Shortbread" />
+                </div>
+                <h3>Pistachio Rose Shortbread <span class="badge">N</span></h3>
+                <p class="menu-desc">Delicate shortbread flavoured with rose and pistachios.</p>
+                <p class="menu-meta">Box of 12</p>
+                <p class="menu-price">₹699</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?auto=format&fit=crop&w=800&q=80" alt="Double Chocolate Fudge Brownie" />
+                </div>
+                <h3>Double Chocolate Fudge Brownie</h3>
+                <p class="menu-desc">Dense, fudgy brownie with dark and milk chocolate.</p>
+                <p class="menu-meta">Single / Box of 6</p>
+                <p class="menu-price">₹179 / ₹949</p>
+              </article>
+              
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <!-- REPLACED IMAGE -->
+                  <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=800&q=80" alt="Assorted Cookie Gift Box" />
+                </div>
+                <h3>Assorted Cookie Gift Box</h3>
+                <p class="menu-desc">Curated selection of our best cookies in a premium box.</p>
+                <p class="menu-meta">Box of 16</p>
+                <p class="menu-price">₹1,299</p>
+              </article>
+            </div>
+          </section>
+
+          <!-- Beverages & Add-ons -->
+          <section class="menu-section" id="beverages">
+            <div class="menu-section-header">
+              <h2>Café Beverages & Add‑ons</h2>
+              <p>Perfect pairings for your favourite bakes.</p>
+            </div>
+            <div class="grid cards-3">
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" alt="Pour-over Coffee" />
+                </div>
+                <h3>Pour-over Coffee</h3>
+                <p class="menu-desc">Single-origin Indian coffee, medium roasted.</p>
+                <p class="menu-meta">Hot / Iced</p>
+                <p class="menu-price">₹199</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=800&q=80" alt="Hot Chocolate" />
+                </div>
+                <h3>Hot Chocolate</h3>
+                <p class="menu-desc">55% couverture chocolate with steamed milk.</p>
+                <p class="menu-meta">Classic / Spiced</p>
+                <p class="menu-price">₹229</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?auto=format&fit=crop&w=800&q=80" alt="Masala Chai" />
+                </div>
+                <h3>Masala Chai</h3>
+                <p class="menu-desc">House-blend Indian masala tea with fresh ginger.</p>
+                <p class="menu-meta">Kettle (serves 2)</p>
+                <p class="menu-price">₹159</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=800&q=80" alt="Whipped Cream" />
+                </div>
+                <h3>Whipped Cream Add-on</h3>
+                <p class="menu-desc">Side of lightly sweetened vanilla cream.</p>
+                <p class="menu-meta">Per serving</p>
+                <p class="menu-price">₹49</p>
+              </article>
+              
+              <article class="card menu-item">
+                <div class="card-image">
+                  <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80" alt="Seasonal Fruit Compote" />
+                </div>
+                <h3>Seasonal Fruit Compote</h3>
+                <p class="menu-desc">Slow-cooked seasonal fruits to top your dessert.</p>
+                <p class="menu-meta">Per serving</p>
+                <p class="menu-price">₹79</p>
+              </article>
+              
+              
+            </div>
+          </section>
+
+          <section class="menu-note-section">
+            <div class="menu-note card">
+              <h3>Custom cakes & bulk orders</h3>
+              <p>
+                For weddings, corporate events, or special celebrations, we
+                offer fully customised menus and flavour consultations.
+              </p>
+              <ul>
+                <li>Minimum 24–48 hours notice for custom designs</li>
+                <li>Tiered cakes start at ₹3,999</li>
+                <li>Corporate gifting hampers start at ₹599 per box</li>
+              </ul>
+              <p>
+                Call or WhatsApp us at <strong>+91-98765-43210</strong> or visit the
+                <a href="contact.html">contact page</a> to share your requirements.
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="logo-mark">AB</span>
+          <p style="margin-top: 15px; color: #b0a8a4;">AuroBakery · Modern Indian bakery & café.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h4>Visit</h4>
+            <p>Indiranagar · Bengaluru</p>
+            <p>8:00 AM – 10:30 PM</p>
+          </div>
+          <div>
+            <h4>Explore</h4>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">Our story</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <p>+91-98765-43210</p>
+            <p>hello@aurobakery.in</p>
+          </div>
+        </div>
+        <p class="footer-meta">
+          © 2026 AuroBakery. Crafted with butter & care.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
